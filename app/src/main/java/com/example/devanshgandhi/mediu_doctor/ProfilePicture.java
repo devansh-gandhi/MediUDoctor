@@ -12,9 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 public class ProfilePicture extends AppCompatActivity {
-
     private DatabaseReference mUserDatabase;
     private FirebaseUser mCurrentUser;
     private ImageView image_profile;
@@ -26,13 +24,12 @@ public class ProfilePicture extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        image_profile = (ImageView) findViewById(R.id.profilepicture);
+        image_profile = (ImageView)findViewById(R.id.profilepicture);
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Users").child(current_uid);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Users").child(current_uid);
         mUserDatabase.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String image = dataSnapshot.child("image").getValue().toString();
@@ -45,7 +42,5 @@ public class ProfilePicture extends AppCompatActivity {
 
             }
         });
-
     }
-
 }
