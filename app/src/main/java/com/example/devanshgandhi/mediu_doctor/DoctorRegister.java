@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -90,7 +91,17 @@ public class DoctorRegister extends AppCompatActivity {
                             mProgressDialog.dismiss();
                             FirebaseUser current_user= FirebaseAuth.getInstance().getCurrentUser();
                             String uid= current_user.getUid();
-                            mDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Users").child(uid);
+
+//
+//
+//                            FirebaseOptions options = new FirebaseOptions.Builder()
+//                                    .setApplicationId("1:530266078999:android:481c4ecf3253701e") // Required for Analytics.
+//                                    .setApiKey("AIzaSyBRxOyIj5dJkKgAVPXRLYFkdZwh2Xxq51k") // Required for Auth.
+//                                    .setDatabaseUrl("https://project-1765055333176374514.firebaseio.com/") // Required for RTDB.
+//                                    .build();
+//                            FirebaseApp.initializeApp(this /* Context */, options, "secondary");
+//
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Users").child(uid);
                             HashMap<String, String> userMap= new HashMap<>();
                             userMap.put("firstname",firstname);
                             userMap.put("lastname", lastname);
